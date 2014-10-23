@@ -6,11 +6,14 @@
 //  Copyright (c) 2014 Black Rail Capital. All rights reserved.
 //
 
+
 #import "ViewController.h"
 
-#define METERS_PER_MILE 1609.344
 
-@interface ViewController ()
+#define METERS_PER_MILE 1609.344
+#define IS_OS_8_OR_LATER ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0)
+
+@interface ViewController () <CLLocationManagerDelegate>
 
 @end
 
@@ -18,6 +21,8 @@
 
 -(void)viewWillAppear:(BOOL)animated {
     // 1
+    
+    
     CLLocationCoordinate2D zoomLocation;
     zoomLocation.latitude = 39.281516;
     zoomLocation.longitude= -76.580806;
@@ -33,11 +38,13 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
 
 @end
