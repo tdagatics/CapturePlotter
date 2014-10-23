@@ -8,6 +8,7 @@
 
 
 #import "ViewController.h"
+#import "ASIHTTPRequest.h"
 
 
 #define METERS_PER_MILE 1609.344
@@ -47,4 +48,40 @@
 }
 
 
+- (IBAction)refreshTapped:(id)sender {
+    // 1
+    MKCoordinateRegion mapRegion = [_mapView region];
+    CLLocationCoordinate2D centerLocation = mapRegion.center;
+    
+    // 2
+    NSString *jsonFile = [[NSBundle mainBundle] pathForResource:@"command" ofType:@"json"];
+    NSString *formatString = [NSString stringWithContentsOfFile:jsonFile encoding:NSUTF8StringEncoding error:nil];
+    NSString *json = [NSString stringWithFormat:formatString, centerLocation.latitude, centerLocation.longitude, 0.5*METERS_PER_MILE];
+    
+    // 3
+    NSURL *url = [NSURL URLWithString:@"http://data.blatimorecity.go/api/views/INLINE/rows.json?method=index"];
+    
+    // 4
+    ASIHTTPRequest *_request = [ASIHTTPRequest requestWithURL:url];
+    __weak ASIHTTPRequest *request = _request;
+    
+    request.requestMethod = @"POST";
+    [request addRequestHeader:@"Content-Type" value:@"application/json"];
+    [request appendPostData:[json dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    // 5
+    [request setDelegate:self];
+    [request setCompletionBlock:^{
+        NSString *responseString = [request responseString];
+        NSLog(@"Response: %@", responseString);
+    }];
+    [request setFailedBlock:^{
+        NSError *error = [request error];
+        NSLog(@"Error: %@", error.localizedDescription);
+    }];
+    
+    // 6
+    [request startAsynchronous];
+    
+}
 @end

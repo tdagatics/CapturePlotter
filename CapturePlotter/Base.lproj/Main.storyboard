@@ -19,7 +19,11 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IEm-5h-1uH">
                                 <rect key="frame" x="0.0" y="556" width="600" height="44"/>
                                 <items>
-                                    <barButtonItem title="Refresh" id="jI3-DV-RSn"/>
+                                    <barButtonItem title="Refresh" id="jI3-DV-RSn">
+                                        <connections>
+                                            <action selector="refreshTapped:" destination="vXZ-lx-hvc" id="czk-2R-cTQ"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="hybrid" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UxQ-q9-NGF">

@@ -29,6 +29,9 @@
 		43915EF419F9A3D000542647 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43915EF319F9A3D000542647 /* SystemConfiguration.framework */; };
 		43915EF619F9A3DE00542647 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43915EF519F9A3DE00542647 /* MobileCoreServices.framework */; };
 		43915EF819F9A3F100542647 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 43915EF719F9A3F100542647 /* libz.dylib */; };
+		43915EFA19F9AE3B00542647 /* command.json in Resources */ = {isa = PBXBuildFile; fileRef = 43915EF919F9AE3B00542647 /* command.json */; };
+		43915EFD19F9B24000542647 /* MyLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 43915EFC19F9B24000542647 /* MyLocation.m */; };
+		43915EFF19F9B5B000542647 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43915EFE19F9B5B000542647 /* AddressBook.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,10 @@
 		43915EF319F9A3D000542647 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		43915EF519F9A3DE00542647 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		43915EF719F9A3F100542647 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		43915EF919F9AE3B00542647 /* command.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = command.json; sourceTree = "<group>"; };
+		43915EFB19F9B24000542647 /* MyLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyLocation.h; path = ../MyLocation.h; sourceTree = "<group>"; };
+		43915EFC19F9B24000542647 /* MyLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyLocation.m; path = ../MyLocation.m; sourceTree = "<group>"; };
+		43915EFE19F9B5B000542647 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43915EFF19F9B5B000542647 /* AddressBook.framework in Frameworks */,
 				43915EF819F9A3F100542647 /* libz.dylib in Frameworks */,
 				43915EF619F9A3DE00542647 /* MobileCoreServices.framework in Frameworks */,
 				43915EF419F9A3D000542647 /* SystemConfiguration.framework in Frameworks */,
@@ -112,6 +120,7 @@
 		43915E9919F986C600542647 = {
 			isa = PBXGroup;
 			children = (
+				43915EFE19F9B5B000542647 /* AddressBook.framework */,
 				43915EF719F9A3F100542647 /* libz.dylib */,
 				43915EF519F9A3DE00542647 /* MobileCoreServices.framework */,
 				43915EF319F9A3D000542647 /* SystemConfiguration.framework */,
@@ -137,6 +146,8 @@
 		43915EA419F986C600542647 /* CapturePlotter */ = {
 			isa = PBXGroup;
 			children = (
+				43915EFB19F9B24000542647 /* MyLocation.h */,
+				43915EFC19F9B24000542647 /* MyLocation.m */,
 				43915EA919F986C600542647 /* AppDelegate.h */,
 				43915EAA19F986C600542647 /* AppDelegate.m */,
 				43915EAC19F986C600542647 /* ViewController.h */,
@@ -152,6 +163,7 @@
 		43915EA519F986C600542647 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				43915EF919F9AE3B00542647 /* command.json */,
 				43915EA619F986C600542647 /* Info.plist */,
 				43915EA719F986C600542647 /* main.m */,
 			);
@@ -296,6 +308,7 @@
 				43915EB119F986C600542647 /* Main.storyboard in Resources */,
 				43915EB619F986C600542647 /* LaunchScreen.xib in Resources */,
 				43915EB319F986C600542647 /* Images.xcassets in Resources */,
+				43915EFA19F9AE3B00542647 /* command.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,6 +326,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				43915EFD19F9B24000542647 /* MyLocation.m in Sources */,
 				43915EE319F999C200542647 /* ASIDataCompressor.m in Sources */,
 				43915EAE19F986C600542647 /* ViewController.m in Sources */,
 				43915EE719F999C200542647 /* ASIHTTPRequest.m in Sources */,

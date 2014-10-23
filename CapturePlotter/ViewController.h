@@ -15,6 +15,7 @@
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 @property (weak, nonatomic) CLLocationManager *locationManager;
+- (IBAction)refreshTapped:(id)sender;
 
 @end
 
