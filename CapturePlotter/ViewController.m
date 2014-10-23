@@ -9,6 +9,7 @@
 
 #import "ViewController.h"
 #import "ASIHTTPRequest.h"
+#import "MyLocation.h"
 
 
 #define METERS_PER_MILE 1609.344
@@ -47,6 +48,29 @@
     // Dispose of any resources that can be recreated.
 }
 
+// Add new method above refreshTapped
+-(void)plotCrimePositions:(NSData *)responseData {
+    for (id<MKAnnotation> annotation in _mapView.annotations) {
+        [_mapView removeAnnotation:annotation];
+    }
+    
+    NSDictionary *root = [NSJSONSerialization JSONObjectWithData:responseData options:0 error:nil];
+    NSArray *data = [root objectForKey:@"data"];
+    
+    for (NSArray *row in data) {
+        NSNumber *latitude = [[row objectAtIndex:22]objectAtIndex:1];
+        NSNumber *longitude = [[row objectAtIndex:22]objectAtIndex:2];
+        NSString *crimeDescription = [row objectAtIndex:18];
+        NSString *address = [row objectAtIndex:14];
+        
+        CLLocationCoordinate2D coordinate;
+        coordinate.latitude = latitude.doubleValue;
+        coordinate.longitude = longitude.doubleValue;
+        MyLocation *annotation = [[MyLocation alloc] initWithName:crimeDescription address:address coordinate:coordinate];
+        [_mapView addAnnotation:annotation];
+    }
+}
+
 
 - (IBAction)refreshTapped:(id)sender {
     // 1
@@ -74,6 +98,7 @@
     [request setCompletionBlock:^{
         NSString *responseString = [request responseString];
         NSLog(@"Response: %@", responseString);
+        [self plotCrimePositions:request.responseData];
     }];
     [request setFailedBlock:^{
         NSError *error = [request error];
@@ -82,6 +107,55 @@
     
     // 6
     [request startAsynchronous];
-    
 }
+
+-(MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id<MKAnnotation>)annotation
+{
+    static NSString *identifier = @"MyLocation";
+    if ([annotation isKindOfClass:[MyLocation class]]) {
+        
+        MKAnnotationView *annotationView = (MKAnnotationView *)[_mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        if (annotationView == nil) {
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+            annotationView.enabled = YES;
+            annotationView.canShowCallout = YES;
+            annotationView.image = [UIImage imageNamed:@"arrest.png"];
+        }
+        else {
+            annotationView.annotation = annotation;
+        }
+        
+        return annotationView;
+        
+    }
+    
+    return nil;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 @end
